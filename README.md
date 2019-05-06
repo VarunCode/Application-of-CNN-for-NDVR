@@ -108,15 +108,17 @@ The aforementioned model with default keyframes as well as our model run atop mo
 
 Before, we delve further into metric comparison, following is an interesting true positive example. On the left is the query video for which the next video (with overlaid text) has been returned from the database of videos as a near duplicate. Using a CNN based vector aggregation method allows for such complex cases to be detected as near duplicates as well. 
 
-<video src="seed.mp4" width="320" height="200" controls preload></video>
-<video src="query.mp4" width="320" height="200" controls preload></video>
+<video width="320" height="200" controls preload> 
+    <source src="seed.mp4"></source> 
+    <source src="query.mp4"></source> 
+</video>
 
-
+![Video](https://github.com/VarunCode/Application-Extension-of-CNN-V-for-Near-Duplicate-Video-Retreival/blob/master/seed.mp4)
 
 The subsampling of data allowed us to run five different queries against both the models. The main metric for evaluation is average precision across queries and mAP across modified keyframe extractors. Following is the average precision graph observed over the three different modified extractors and compared against the default set of keyframes that have been provided. 
 
 <p align="center">
-<img align="center" src="AveragePrecision.png" width="400" height="300">
+<img align="center" src="AvgPrecision.png" width="400" height="300">
 </p>
 
 
