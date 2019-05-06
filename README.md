@@ -65,12 +65,12 @@ This method leverages Convolutional Neural Network (CNN) features from intermedi
 Our approach is inspired by the CNN based aggregation technique. At a high-level, it follows the bag-of-visual word (BOVW) model, where, for each video, a histogram is generated and then compared across query videos. First, we provide a mapping of this approach to the BOVW model, followed by an overview of our neural network architecture (Alexnet). We have then detailed our system components.
 
 ### Mapping to Bag-of-Visual-Words Model (BOVW)
-<img src="https://github.com/VarunCode/Application-Extension-of-CNN-V-for-Near-Duplicate-Video-Retreival/blob/master/BOVW.jpg" width="500" height="300">
+<img src="https://VarunCode.github.com/Application-Extension-of-CNN-V-for-Near-Duplicate-Video-Retreival/BOVW.jpg" width="500" height="300">
 
 
 In the BOVW world image features replaces actual words. These features are unique patterns in each image and can be detected via any extractor algorithm such as SIFT or KAZE. Given the complexity of the problem, which must adapt to changes in scale, encoding, transformations, or text overlays, we have used a pre-trained CNN (Alexnet) for feature extraction. 
 
-<img src="https://github.com/VarunCode/Application-Extension-of-CNN-V-for-Near-Duplicate-Video-Retreival/blob/master/Codebook_clustering.jpg" width="500" height="400">
+<img src="https://VarunCode.github.com/Application-Extension-of-CNN-V-for-Near-Duplicate-Video-Retreival/Codebook_clustering.jpg" width="500" height="400">
 
 
 The next step in this process is to generate clusters from the descriptors using any common clustering mechanism. The center of each cluster will be used as the visual dictionary vocabularies that can then be used for histogram matching for query images. 
