@@ -55,10 +55,6 @@ Pattern based indexing tree is build based on the encoding from keyframes. M-pat
 ### Convolutional Neural Networks Modes (CNN): 
 Frame descriptors are extracted using some pre-trained network. A video-level histogram representation derives from either layer-wise or vector-wise aggregation of visual words. The similarity between two videos is computed as the tf-idf weighted cosine similarity over the video-level histograms.
 
-### Deep Metric Learning (DML): 
-This method leverages Convolutional Neural Network (CNN) features from intermediate layers to generate discriminative global video representations in tandem with a DML framework with two fusion variations, trained to approximate an embedding function for accurate distance calculation between two near-duplicate videos.
-
-
 ## Approach Overview
 
 Our approach is inspired by the CNN based aggregation technique. At a high-level, it follows the bag-of-visual word (BOVW) model, where, for each video, a histogram is generated and then compared across query videos. First, we provide a mapping of this approach to the BOVW model, followed by an overview of our neural network architecture (Alexnet). We have then detailed our system components.
@@ -108,13 +104,6 @@ The aforementioned model with default keyframes as well as our model run atop mo
 
 Before, we delve further into metric comparison, following is an interesting true positive example. On the left is the query video for which the next video (with overlaid text) has been returned from the database of videos as a near duplicate. Using a CNN based vector aggregation method allows for such complex cases to be detected as near duplicates as well. 
 
-<video width="320" height="200" controls preload> 
-    <source src="seed.mp4"></source> 
-    <source src="query.mp4"></source> 
-</video>
-
-![Video](https://github.com/VarunCode/Application-Extension-of-CNN-V-for-Near-Duplicate-Video-Retreival/blob/master/seed.mp4)
-
 The subsampling of data allowed us to run five different queries against both the models. The main metric for evaluation is average precision across queries and mAP across modified keyframe extractors. Following is the average precision graph observed over the three different modified extractors and compared against the default set of keyframes that have been provided. 
 
 <p align="center">
@@ -145,9 +134,7 @@ In this project, we implemented a model motivated by vector-based aggregation in
 In the future, we are considering three directions as follows: 
 
 1. Challenging datasets with different domains of videos (including distractors). 
-
 2. Can we perform NDVR on low-quality video datasets?
-
 3. Are ensemble mechanisms possible during inference?
 
 
