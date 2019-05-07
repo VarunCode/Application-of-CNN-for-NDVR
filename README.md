@@ -21,16 +21,16 @@ A video can be split into scenes, shot, and frames as shown in the following dia
 
 In this project, we explore several keyframe extractor techniques as they serve as input to the CNN model. We also trade-off the performance and runtime of said techniques to provide a situational analysis of when to pick a particular model. Following is a summarization of some common techniques:
 
-1. _Sequential Comparison between frames_ - compare frame by frame and choose frames with high difference values.
-2. _Global Comparison between frames_ - Minimize a predefined objective function by using the global difference between frames
-3. _Curve Simplification_ - Represent frames as points in the feature space to formulate a trajectory curve. Key frames are the points that give the best representation to the shape of the curve.
-4. _Clustering_ - Each frame is a data point in the feature space. Cluster frames, then the frames that have smallest distances (closest) to cluster centers are selected.
+1. **Sequential Comparison between frames** - compare frame by frame and choose frames with high difference values.
+2. **Global Comparison between frames** - Minimize a predefined objective function by using the global difference between frames
+3. **Curve Simplification** - Represent frames as points in the feature space to formulate a trajectory curve. Key frames are the points that give the best representation to the shape of the curve.
+4. **Clustering** - Each frame is a data point in the feature space. Cluster frames, then the frames that have smallest distances (closest) to cluster centers are selected.
 
-We have picked method 1 - sequential comparison for our exploration and have implemented three subtechniques under this domain - local maxima, top k, and threshold parameter based methods.
+We have picked _Sequential Comparison between frames_ method for our exploration and have implemented three subtechniques under this domain - local maxima, top k, and threshold parameter based methods.
 
 ## Dataset for experiment
 
-Our model has been deployed on the widely used [_CC_WEB_VIDEO_](http://vireo.cs.cityu.edu.hk/webvideo/) dataset which is a common benchmarking dataset used in this domain. The original dataset provides about 13k videos and 400k keyframes. Given our compute and storage resources, we have downsampled the data using common subsampling techniques. The dataset also provides required metadata to parse each video with its corresponding keyframes. The data is annotated as _E (Exactly duplicate), S (Similar video), V (Different  version), and so on_. 
+Our model has been deployed on the widely used [_CC_WEB_VIDEO_](http://vireo.cs.cityu.edu.hk/webvideo/) dataset which is a common benchmarking dataset used in this domain. The original dataset provides about 13k videos and 400k keyframes. Given our compute and storage resources, we have downsampled the data using common subsampling techniques. The dataset also provides required metadata to parse each video with its corresponding keyframes. The data is annotated with labels like _E (Exactly duplicate), S (Similar video), V (Different  video). 
 
 ## State-of-the-art Methods
 
@@ -86,10 +86,10 @@ The aforementioned components provides us with a trained model like codebook whi
 
 ### Keyframe technique implementation
 
-As mentioned before, we have implemented the Sequential Comparison between frames paradigm. The algorithm for the three techniques starts with computing a difference value for each frame (by comparing with previous frame). Subsequently, we choose a keyframe, either by picking a _local maxima based function_ (or) choosing frames with sum of absolute difference over a threshold (or) picking top K frames by ordering difference values. A common representation of these techniques will lead to a intermediate representation as follows. Atop this representation we run different methods to pick out keyframes. 
+As mentioned before, we have implemented the Sequential Comparison between frames paradigm. The algorithm for the three techniques starts with computing a difference value for each frame (by comparing with previous frame). Subsequently, we choose a keyframe, either by picking a _local maxima based function_ (or) choosing _frames with sum of absolute difference over a threshold_ (or) picking _top K frames by ordering difference values_. A common representation of these techniques will lead to a intermediate representation as follows. Atop this representation we run different methods to pick out keyframes. 
 
 <p align="center">
-<img align="center" src="KeyFramePoints.png" width="400" height="300">
+<img align="center" src="KeyFramePoints.png" width="500" height="400">
 </p>
 
 
@@ -98,9 +98,11 @@ As mentioned before, we have implemented the Sequential Comparison between frame
 
 The aforementioned model with default keyframes as well as our model run atop modified keyframe extractors were both deployed on the CC_WEB_VIDEO dataset. The dataset was subsampled owing to compute and storage constraints. The subsampling of data allowed us to run five different queries against both the models. The main metric for evaluation is average precision across queries and mAP across modified keyframe extractors. Following is the average precision graph observed over the three different modified extractors and compared against the default set of keyframes that have been provided. 
 
+
 <p align="center">
 <img align="center" src="AveragePrecision.png" width="400" height="300">
 </p>
+
 
 
 The above graph provides us with three key observations - First, the average precision observed here is only for five different queries due to subsampled data and hence, the mAP values are not directly comparable with current state-of-the-art results. Second, we observe that for certain queries, the mAP value is slightly lower as compared to other queries. We term these queries as “hard” queries owing to gradual transitions in the seed videos. This leads to the generated keyframes not being fully representative of the video and hence, leading to lossful featurization. Following is the P-R curve for one such hard query.
@@ -112,9 +114,12 @@ The above graph provides us with three key observations - First, the average pre
 
 Third, the biggest takeaway is the impact of modified keyframe extractors atop the CNN model. Although, we have changed both the keyframe set size and extraction technique based on our own implemented models, we see that the impact on mean precision is negligible for most queries when compared to the default precision value. Hence, this can be viewed as an approximation of the modified keyframe paradigm with comparable results to the default keyframes provided.
 
+
+
 <p align="center">
 <img align="center" src="KFComparison.png" width="400" height="300">
 </p>
+
 
 
 The aforementioned factor can also be thought of as a possible trade-off in terms of keyframe computation runtime vs performance. The above graph provides us with a cross-sectional comparison between the modified keyframe extractors. We observed that the local maxima method provides us with the best performance (mAP) over different queries that we executed. On the other hand, top K and threshold based methods provides faster runtimes with comparable mAP metric. Hence, this trade-off can be utilized in real-world situations when either off faster runtime or better performance (background process rather than real-time) is required. This concludes our results and metrics discussion.
@@ -138,7 +143,7 @@ This project was a great learning curve for our team and helped us gain a deeper
 
 2. Interpreting and understanding the use of Alexnet in the context of NDVR by previous state-of-the-art approaches was a challenge in itself. The complexity of aggregating from intermediate steps led to a challenging but great experience of breaking down a neural net.  
 
-3. A very interesting extension of the project (never attempted before) is applying the said model on low-quality video datasets. We attempted premilinary training efforts on the same but lack of a large near duplicate video dataset (like CC_WEB_VIDEO for low quality domain) was a hiccup as the model began overfitting. As mentioned before, this would be one of the immediate future direction for this project.
+3. A very interesting extension of the project (never attempted before) is applying the said model on low-quality video datasets. We attempted premilinary training efforts on the same but lack of a large near duplicate video dataset (like CC_WEB_VIDEO for low quality domain) was a hiccup as the model began overfitting. As mentioned before, this would be one of the immediate future directions for this project.
 
 ## Appendix
 
@@ -146,7 +151,7 @@ This project was a great learning curve for our team and helped us gain a deeper
 
 Code for this project can be found in the git repository (link present at webpage beginning). It can be executed by deplyoing the CNN-main file inside CNN module folder. The Keyframe_Extractors module provides the different techniques we implemented for extracting keyframes and can be deployed seperately on different video datasets.
 
-Project proposal and mid-term report can be found in the git repository as well.
+Project proposal, mid-term report and final presentation can be found in the git repository as well.
 
 ### Team members
 Anuja Golechha, Shivanee Nagarajan, Varun Ramesh.
