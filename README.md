@@ -107,7 +107,7 @@ Before, we delve further into metric comparison, following is an interesting tru
 The subsampling of data allowed us to run five different queries against both the models. The main metric for evaluation is average precision across queries and mAP across modified keyframe extractors. Following is the average precision graph observed over the three different modified extractors and compared against the default set of keyframes that have been provided. 
 
 <p align="center">
-<img align="center" src="AvgPrecision.png" width="400" height="300">
+<img align="center" src="AveragePrecision.png" width="400" height="300">
 </p>
 
 
