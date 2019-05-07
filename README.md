@@ -120,7 +120,7 @@ The aforementioned factor can also be thought of as a possible trade-off in term
 
 
 ## Conclusion and Future Work
-In this project, we implemented a model motivated by vector-based aggregation in a CNN to perform NDVR and observed P-R curves for five different query sets. We also implemented several keyframe extractor techniques to serve as input to the aforementioned CNN model. Modified Keyframe extractors provide interesting computation opportunities and accuracy vs runtime trade-offs. _All team members had equal contribution towards both project implementation and documentation_.
+In this project, we implemented a model motivated by vector-based aggregation in a CNN to perform NDVR and observed P-R curves for five different query sets. We also implemented several keyframe extractor techniques to serve as input to the aforementioned CNN model. Modified Keyframe extractors provide interesting computation opportunities and accuracy vs runtime trade-offs.
 
 In the future, we are considering three directions as follows: 
 
