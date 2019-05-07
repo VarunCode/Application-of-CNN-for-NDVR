@@ -149,9 +149,7 @@ This project was a great learning curve for our team and helped us gain a deeper
 
 ### Project Files and Code
 
-Code for this project can be found in the git repository (link present at webpage beginning). It can be executed by deplyoing the CNN-main file inside CNN module folder. The Keyframe_Extractors module provides the different techniques we implemented for extracting keyframes and can be deployed seperately on different video datasets.
-
-Project proposal, mid-term report and final presentation can be found in the git repository as well.
+All files and code for this project can be found in the github link present at start of this webpage. It can be executed by deplyoing the CNN-main file inside CNN module folder. The Keyframe_Extractors module provides the different techniques we implemented for extracting keyframes and can be deployed seperately on different video datasets.
 
 ### Team members
 Anuja Golechha, Shivanee Nagarajan, Varun Ramesh.
