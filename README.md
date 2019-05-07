@@ -1,9 +1,3 @@
-# Application of CNN for Near Duplicate Video Retrieval
-
-Anuja Golechha, Shivanee Nagarajan, Varun Ramesh
-
-May 6, 2019
-
 ## Introduction
 
 In this project we have performed near duplicate video retrieval/detection (NDVD) using a CNN based approach. With several state-of-the-art approaches available such as Multi-view hashing, Pattern-based approach, ACC, and CNN-based models we chose the CNN based model. Motivated by the use of CNN's over a wide variety of computer vision problems, we leverage the power of a pre-trained neural network to generate a global-level video histogram by means of vector aggregation over smaller components. We have modified the problem of NDVR into a model of querying a video database. In essence, the problem statement is - _Given a dataset of videos and a query from a new video, we aim to retrieve a ranked list of near-duplicate videos_. 
@@ -27,16 +21,16 @@ A video can be split into scenes, shot, and frames as shown in the following dia
 
 In this project, we explore several keyframe extractor techniques as they serve as input to the CNN model. We also trade-off the performance and runtime of said techniques to provide a situational analysis of when to pick a particular model. Following is a summarization of some common techniques:
 
-1. Sequential Comparison between frames - compare frame by frame and choose frames with high difference values.
-2. Global Comparison between frames - Minimize a predefined objective function by using the global difference between frames
-3. Curve Simplification - Represent frames as points in the feature space to formulate a trajectory curve. Key frames are the points that give the best representation to the shape of the curve.
-4. Clustering - Each frame is a data point in the feature space. Cluster frames, then the frames that have smallest distances (closest) to cluster centers are selected.
+1. _Sequential Comparison between frames_ - compare frame by frame and choose frames with high difference values.
+2. _Global Comparison between frames_ - Minimize a predefined objective function by using the global difference between frames
+3. _Curve Simplification_ - Represent frames as points in the feature space to formulate a trajectory curve. Key frames are the points that give the best representation to the shape of the curve.
+4. _Clustering_ - Each frame is a data point in the feature space. Cluster frames, then the frames that have smallest distances (closest) to cluster centers are selected.
 
 We have picked method 1 - sequential comparison for our exploration and have implemented three subtechniques under this domain - local maxima, top k, and threshold parameter based methods.
 
 ## Dataset for experiment
 
-Our model has been deployed on the widely used CC_WEB_VIDEO dataset which is a common benchmarking dataset used in this domain. The original dataset provides about 13k videos and 400k keyframes. Given our compute and storage resources, we have downsampled the data using common subsampling techniques. The dataset also provides required metadata to parse each video with its corresponding keyframes. The data is annotated as _E (Exactly duplicate), S (Similar video), V (Different  version), and so on_. 
+Our model has been deployed on the widely used _CC_WEB_VIDEO_ dataset which is a common benchmarking dataset used in this domain. The original dataset provides about 13k videos and 400k keyframes. Given our compute and storage resources, we have downsampled the data using common subsampling techniques. The dataset also provides required metadata to parse each video with its corresponding keyframes. The data is annotated as _E (Exactly duplicate), S (Similar video), V (Different  version), and so on_. 
 
 ## State-of-the-art Methods
 
@@ -44,8 +38,7 @@ While several methods have been applied in this problem domain, following are fo
 
 ### Auto Color Correlograms (ACC): 
 This method extracts one frame per second from the original video and ACC of each such frame is computed and aggregated based
-on visual codebook. The near-duplicate video is identified using TF-IDF weighted cosine
-similarity over the visual word histograms of a query and a dataset video.
+on visual codebook. The near-duplicate video is identified using TF-IDF weighted cosine similarity over the visual word histograms of a query and a dataset video.
 
 ### Stochastic Multi-view Hashing (SMVH): 
 It combines multiple keyframe features to learn a group of mapping functions that project video keyframes into the Hamming space. The combination of keyframe hash codes generates a video signature that constitutes the final video representation. A composite Kullback-Leibler (KL) divergence measure is used to compute similarity scores.
@@ -127,7 +120,7 @@ The aforementioned factor can also be thought of as a possible trade-off in term
 
 
 ## Conclusion and Future Work
-In this project, we implemented a model motivated by vector-based aggregation in a CNN to perform NDVR and observed P-R curves for five different query sets. We also implemented several keyframe extractor techniques to serve as input to the aforementioned CNN model. Modified Keyframe extractors provide interesting computation opportunities and accuracy vs runtime trade-offs.
+In this project, we implemented a model motivated by vector-based aggregation in a CNN to perform NDVR and observed P-R curves for five different query sets. We also implemented several keyframe extractor techniques to serve as input to the aforementioned CNN model. Modified Keyframe extractors provide interesting computation opportunities and accuracy vs runtime trade-offs. _All team members had equal contribution towards both project implementation and documentation_.
 
 In the future, we are considering three directions as follows: 
 
